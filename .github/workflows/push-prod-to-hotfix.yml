@@ -1,0 +1,21 @@
+name: push to hotfix branch from prod
+
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout prod
+        uses: actions/checkout@v2
+        with:
+          ref: prod
+
+      - name: force-push to hotfix
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git push -f origin prod:hotfix

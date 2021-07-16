@@ -1,0 +1,23 @@
+name: merge to main branch when hotfix merged
+
+on:
+  # prodへのマージが閉じた時
+  pull_request:
+    branches:
+      - prod
+    types: [closed]
+jobs:
+  merge:
+    # マージかつマージ元がhotfix
+    if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'hotfix'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Merge prod -> main
+        uses: devmasx/merge-branch@v1.3.1
+        with:
+          type: now
+          from_branch: prod
+          target_branch: main
+          github_token: ${{ github.token }}
