@@ -1,0 +1,21 @@
+name: push to stg branch from main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout main
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
+      - name: force-push to stg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git push -f origin main:stg
