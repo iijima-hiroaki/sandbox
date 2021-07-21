@@ -1,0 +1,15 @@
+name: test
+
+on:
+  push:
+    branches:
+      - stg
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: test
+        run: |
+          echo triggered!!!
