@@ -13,9 +13,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: prod
+          token: ${{ secrets.PAT }}
 
       - name: force-push to hotfix
-        env:
-          GITHUB_TOKEN: ${{ secrets.RAT }}
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.RAT }}
         run: |
           git push -f origin prod:hotfix

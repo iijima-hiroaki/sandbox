@@ -13,9 +13,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: main
+          token: ${{ secrets.PAT }}
 
       - name: force-push to stg
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
           git push -f origin main:stg
