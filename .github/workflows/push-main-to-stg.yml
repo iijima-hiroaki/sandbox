@@ -16,6 +16,6 @@ jobs:
 
       - name: force-push to stg
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         run: |
           git push -f origin main:stg

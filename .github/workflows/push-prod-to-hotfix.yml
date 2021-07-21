@@ -16,6 +16,6 @@ jobs:
 
       - name: force-push to hotfix
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RAT }}
         run: |
           git push -f origin prod:hotfix
