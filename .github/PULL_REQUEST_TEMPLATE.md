@@ -1,6 +1,5 @@
 ---
 labels: pr-review
-
 ---
 
 ## 概要
