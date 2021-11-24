@@ -1,9 +1,6 @@
 ---
-name: Feature request
-about: 機能追加、要望
-title: ''
-labels: type-task
-assignees: ''
+labels: pr-review
+
 ---
 
 ## 概要
