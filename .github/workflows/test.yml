@@ -46,4 +46,7 @@ jobs:
           echo name: "${{ github.event.inputs.name }}
           echo role: "${{ github.event.inputs.role }}
       - name: Define AWS Assume Role ARN
-        run: echo role "${AWS_ASSUME_ROLE_ARN_${github.event.inputs.target^^}}"
+        id: define_assume_role_arn
+        run: echo ::set-output name=AWS_ASSUME_ROLE_ARN::$(echo '${{ toJSON(secrets) }}' | jq -r ".AWS_ASSUME_ROLE_ARN_${github.event.inputs.target^^}")
+      - name: confirm role_arn
+        run: echo "${{ steps.define_assume_role_arn.outputs.AWS_ASSUME_ROLE_ARN }}"
