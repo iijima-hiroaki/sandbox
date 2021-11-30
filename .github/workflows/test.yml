@@ -40,11 +40,11 @@ jobs:
       - uses: actions/checkout@v2
       - name: inputs confirm
         run: |
-          echo target: "${{ github.event.inputs.target }}
-          echo companyId: "${{ github.event.inputs.companyId }}
-          echo email: "${{ github.event.inputs.email }}
-          echo name: "${{ github.event.inputs.name }}
-          echo role: "${{ github.event.inputs.role }}
+          echo target: "${{ github.event.inputs.target }}"
+          echo companyId: "${{ github.event.inputs.companyId }}"
+          echo email: "${{ github.event.inputs.email }}"
+          echo name: "${{ github.event.inputs.name }}"
+          echo role: "${{ github.event.inputs.role }}"
       - name: Define AWS Assume Role ARN
         id: define_assume_role_arn
         run: echo ::set-output name=AWS_ASSUME_ROLE_ARN::$(echo '${{ toJSON(secrets) }}' | jq -r ".AWS_ASSUME_ROLE_ARN_${github.event.inputs.target^^}")
