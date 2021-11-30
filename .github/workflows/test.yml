@@ -9,6 +9,7 @@ on:
     inputs:
       target:
         type: choice
+        required: true
         description: 環境
         options:
           - stg
@@ -24,9 +25,11 @@ on:
         default: 'email@example.com'
       name:
         type: string
+        required: true
         description: アカウント名
       role:
         type: choice
+        required: true
         description: アカウントの権限
         options:
           - ADMIN
