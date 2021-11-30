@@ -1,15 +1,49 @@
-name: test
+name: dispatch
+
+defaults:
+  run:
+    working-directory: ./
 
 on:
-  push:
-    branches:
-      - stg
+  workflow_dispatch:
+    inputs:
+      target:
+        type: choice
+        description: 環境
+        options:
+          - stg
+          - prod
+      companyId:
+        type: string
+        required: true
+        description: 加盟店ID
+      email:
+        type: string
+        required: true
+        description: メール
+        default: 'email@example.com'
+      name:
+        type: string
+        description: アカウント名
+      role:
+        type: choice
+        description: アカウントの権限
+        options:
+          - ADMIN
+          - OPE
+          - VIEW
 
 jobs:
-  push:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: echo test
+      - name: inputs confirm
         run: |
-          echo triggered!!!
+          echo target: "${{ github.event.inputs.target }}
+          echo companyId: "${{ github.event.inputs.companyId }}
+          echo email: "${{ github.event.inputs.email }}
+          echo name: "${{ github.event.inputs.name }}
+          echo role: "${{ github.event.inputs.role }}
+      - name: Define AWS Assume Role ARN
+        run: echo role "${AWS_ASSUME_ROLE_ARN_${github.event.inputs.target^^}}"
