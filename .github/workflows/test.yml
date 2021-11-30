@@ -53,3 +53,7 @@ jobs:
         run: echo ::set-output name=AWS_ASSUME_ROLE_ARN::$(echo '${{ toJSON(secrets) }}' | jq -r ".AWS_ASSUME_ROLE_ARN_${ENV_NAME^^}")
       - name: confirm role_arn
         run: echo "${{ steps.define_assume_role_arn.outputs.AWS_ASSUME_ROLE_ARN }}"
+
+      - name: run script
+        run: |
+          bash test.sh "${{ github.event.inputs.companyId }}" "${{ github.event.inputs.role }}"
