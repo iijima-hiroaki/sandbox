@@ -41,8 +41,8 @@ jobs:
       - name: Define Environment
         run: echo "ENV_NAME=$(echo '${{ (github.event.inputs.target == 'preprod' && 'prod') || github.event.inputs.target }}')" >> $GITHUB_ENV
 
-      - name: echo env
-        run: echo "$ENV_NAME"
+      - name: echo is prod
+        run: echo ${{ (contains(github.event.inputs.target, 'prod') && 'prodある') || 'prodではない' }}
 
 #       - name: Define AWS Assume Role ARN
 #         id: define_assume_role_arn
