@@ -43,7 +43,8 @@ jobs:
 
       - name: echo is prod
         run: echo ${{ (contains(github.event.inputs.target, 'prod') && 'prodある') || 'prodではない' }}
-
+      - name: set pipefail option
+        run: set +o pipefail
       - name: test shell
         run: |
           yes | bash test.sh
