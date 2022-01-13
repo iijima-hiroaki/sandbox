@@ -46,7 +46,6 @@ jobs:
 
       - name: test shell
         run: |
-          set +o pipefail
           yes | bash test.sh
 #       - name: Define AWS Assume Role ARN
 #         id: define_assume_role_arn
