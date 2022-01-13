@@ -1,13 +1,13 @@
 #!/bin/bash
 
-while true; do
-  echo test1
-  read -p "[test1] please yes or no. (y/N): " yn
-  case $yn in
-    [Yy]* ) break ;;
-    [Nn]* ) printf $RED "[test1] 処理を中断します." && exit 1;;
-    * ) echo '[test1] Please answer Yes or No.' ;;
-  esac
-done
+env=$1
+company_id=$2
 
-echo "[test1] done!!"
+if [ "$env" == "preprod" ];then
+  if [[ "$company_id" != *"stg" ]];then  
+    echo "env=preprodはsuffixをstgにしてください。";
+    exit 1
+  fi
+fi
+
+echo "OK!"
