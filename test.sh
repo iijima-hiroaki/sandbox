@@ -19,3 +19,5 @@ while true; do
     * ) echo '[test2] Please answer Yes or No.' ;;
   esac
 done
+
+echo "done!!"
