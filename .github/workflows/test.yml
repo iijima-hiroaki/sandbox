@@ -1,5 +1,7 @@
 name: dispatch
 
+description: せつめいです
+
 defaults:
   run:
     working-directory: ./
